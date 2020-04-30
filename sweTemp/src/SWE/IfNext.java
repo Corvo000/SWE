@@ -4,26 +4,17 @@ public class IfNext
 
 	public static void main(String[] args) 
 	{
-		int n = 24;
-		skipIfNine(n);
-		n = 28;
-		skipIfNine(n);
-		n = 35;
-		skipIfNine(n);
-		n = 36;
-		skipIfNine(n);
-		n = 78;
-		skipIfNine(n);
-		n = 8;
-		skipIfNine(n);
+		for(int i=0;i<51;i++)
+			if(!skipIfNine(i))
+				System.out.println(i+1);
 	}
-	public static void skipIfNine(int n) 
+	public static boolean skipIfNine(int n) 
 	{
 		n+=1;
 		if(n%9 == 0 || hasNine(n))
-			System.out.println(n + " wird uebersprungen.");
+			return true;
 		else
-			System.out.println(n + " wird nicht uebersprungen.");
+			return false;
 	}
 	public static boolean hasNine(int n) 
 	{

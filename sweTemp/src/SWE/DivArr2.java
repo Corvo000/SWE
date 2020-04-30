@@ -16,34 +16,20 @@ public class DivArr2
 	}
 	public static boolean canDivideArray(int [] arr) 
 	{
-		int sum = _getSum(arr);
-		if(sum%2 != 0)
+		if(arr == null || arr.length <= 1) 
 			return false;
-		int middle = _getPos(sum,arr); 
-		return _erg(sum,middle,arr);
-	}
-	public static int _getSum(int [] arr) 
-	{
-		int n=0;
-		for(int i=0;i<arr.length;i++)
-			n += arr[i];
-		return n;
-	}
-	public static boolean _erg(int sum ,int mid, int [] arr) 
-	{
-		for(int i = mid + 1 ;i<arr.length;i++)
-			sum += arr[i];
-		return (sum == sum/2);
-	}
-	public static int _getPos(int sum, int [] arr) 
-	{
-		int middle=0;
-		for(int i=0;i<arr.length-1;i++) 
+		int tmp =0;
+		int sum =0;
+		for(int i=0;i<arr.length;i++) 
 		{
-			middle += arr[i];
-			if(sum/2 == middle)
-				return i;
+			sum += arr[i];
 		}
-		return 0;
-	}
+		for(int i=0;i<arr.length;i++) 
+		{
+			tmp += arr[i];
+			if(tmp == sum/2)
+				return true;
+		}
+		return false;
+	} 
 }
