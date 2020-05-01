@@ -7,45 +7,33 @@ public class FroehlicheZahl
 
 	public static void main(String[] args) 
 	{
-		for(int i=0;i<=104;i++)
+		for(int i=0;i<=1000;i++)
 			if(isHappy(i))
 				System.out.println(i);
 	}
 	public static boolean isHappy(int n) 
 	{
 
-		ArrayList<Character> elements = new ArrayList<Character>();
+		ArrayList<Integer> elements = new ArrayList<Integer>();
 		ArrayList<Integer> storage = new ArrayList<Integer>();
-		int originalN = n;
-		if(n == 1)
-			return true;
 //		System.out.println(n);
-		//Auftrennen in einzelne Werte
 		do
 		{
-			String v = Integer.toString(n);
-			//Aufspalten der Zahl in einzelne Werte
-			while(v.length() >0) 
+			while(n > 0) 
 			{
-				elements.add(v.charAt(0));
-				v = v.substring(1);
+				elements.add(n%10);
+				n = n/10;
 			}
-			//Summen der Quadrate bilden
 			int sum=0;
 			for(int i=0;i<elements.size();i++)
 			{
 	//			System.out.println(elements.get(i));
-				sum += (Integer.parseInt(String.valueOf(elements.get(i)))*Integer.parseInt(String.valueOf(elements.get(i))));
+				sum += (elements.get(i)*elements.get(i));
 			}	
 //			System.out.println(sum);
-			if(sum == originalN)
-				return false;
 			elements.clear();
-			for(int i=0;i<storage.size();i++)
-			{
-				if(sum == storage.get(i))
-					return false;
-			}
+			if(storage.contains(sum))
+				return false;
 			storage.add(sum);
 			n = sum;
 			sum = 0;
@@ -56,6 +44,7 @@ public class FroehlicheZahl
 }
 
 /*
+Fröhliche Zahlen (Wikipedia): 
 1, 7, 10, 13, 19, 23, 28, 31, 32, 44, 49, 68, 70, 79, 82, 86, 91, 94, 97, 100, 
 103, 109, 129, 130, 133, 139, 167, 176, 188, 190, 192, 193, 203, 208, 219, 226, 
 230, 236, 239, 262, 263, 280, 291, 293, 301, 302, 310, 313, 319, 320, 326, 329, 
@@ -64,6 +53,6 @@ public class FroehlicheZahl
 623, 632, 635, 637, 638, 644, 649, 653, 655, 656, 665, 671, 673, 680, 683, 694, 
 700, 709, 716, 736, 739, 748, 761, 763, 784, 790, 793, 802, 806, 818, 820, 833, 
 836, 847, 860, 863, 874, 881, 888, 899, 901, 904, 907, 910, 912, 913, 921, 923, 
-931, 932, 937, 940, 946, 964, 970, 973, 989, 998, 1000, 
+931, 932, 937, 940, 946, 964, 970, 973, 989, 998, 1000, ... 
  */
 
